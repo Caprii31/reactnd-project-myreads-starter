@@ -15,6 +15,8 @@ const Mainpage = (props) => {
     }
 
     
+
+    
     return (
         <div className='list-books-conten'>
             {Object.keys(bookState).map(state =>(
@@ -25,7 +27,7 @@ const Mainpage = (props) => {
                             {books.filter(book => book.shelf===state)
                             .map(book => (
                                 <li key={book.id}>
-                                    <Book book={book}/>
+                                    <Book book={book} state={state} onChange={props.onChange}/>
                                 </li>
                             ))
                             }
