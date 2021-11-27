@@ -7,10 +7,9 @@ const Mainpage = (props) => {
     console.log(books)
 
     const bookState = {
-        allbooks:[],
-        wantToRead : [],
-        currentlyReading : [],
-        read : [],
+        wantToRead : '',
+        currentlyReading : '',
+        read : '',
         
     }
 
