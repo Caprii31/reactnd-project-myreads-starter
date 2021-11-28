@@ -1,3 +1,4 @@
+import { bool } from 'prop-types';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
@@ -11,7 +12,7 @@ export default class Search extends Component {
         searchBooks:''
     }
 
-
+    
    
         search = async (query) => {
             
@@ -23,10 +24,21 @@ export default class Search extends Component {
             }else{
                 try {
                     const books = await BooksAPI.search(this.state.query)
-                    books.forEach(book => book.shelf = 'none')
+
+                    books.map(book =>{
+                        if(this.props.allBooks.find( b => book.id===b.id)){
+                            book.shelf = this.props.allBooks.find( b => book.id===b.id).shelf
+                        }
+                        else{
+                            book.shelf='none'
+                        }
+                    })
+                    
+
                     this.setState(()=>({
                     searchBooks:books
-                }))
+                    }))
+                    console.log(books)
                 }
                 catch(err) {
                     this.setState(()=>({
@@ -39,8 +51,8 @@ export default class Search extends Component {
         }
     
     
-    updateQuery = async (query) => {
-        this.setState(()=>({
+    updateQuery = (query) => {
+            this.setState(()=>({
             query:query.trim()
         }))
 
@@ -75,7 +87,7 @@ export default class Search extends Component {
                     </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.state.searchBooks !=='' && 
+                        {this.state.query !=='' && this.state.searchBooks &&
                             this.state.searchBooks.map((book) =>(
                                 
                                 <li key={book.id}>

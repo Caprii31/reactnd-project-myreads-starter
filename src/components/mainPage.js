@@ -4,7 +4,7 @@ import Book from './book'
 
 const Mainpage = (props) => {
     const books = props.allbooks
-    console.log(books)
+  
 
     const bookState = {
         wantToRead : '',

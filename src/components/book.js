@@ -2,9 +2,15 @@ import React from 'react'
 
 function Book(props) {
     const book = props.book
-   
 
-    let image = book.imageLinks.thumbnail ? book.imageLinks.thumbnail : ''
+  
+    let image = ''
+    try{
+        image = book.imageLinks.thumbnail
+    }
+    catch{
+        image = 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'
+    }
     return (
         
             <div className="book">

@@ -51,7 +51,7 @@ class BooksApp extends React.Component {
                 <MainPage allbooks={this.state.allBooks} onChange={this.onChange}/>
               </Route>   
               <Route exact path="/search">
-                <Search allbooks={this.state.allBooks} onChange={this.onChange}/>
+                <Search allBooks={this.state.allBooks} onChange={this.onChange}/>
               </Route>           
             </Switch>
             <div className="open-search">
