@@ -53,10 +53,10 @@ export default class Search extends Component {
     
     updateQuery = (query) => {
             this.setState(()=>({
-            query:query.trim()
+            query:query
         }))
 
-        this.search()
+        this.search(query)
        
     }
 

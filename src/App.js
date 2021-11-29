@@ -26,12 +26,21 @@ class BooksApp extends React.Component {
   }
 
    onChange =  async (book,shelf) =>{
-    await BooksAPI.update(book,shelf)
-    BooksAPI.getAll()
-    .then(books => this.setState(()=>({
-      allBooks:books
-    })))
+    const updatedBooks = await BooksAPI.update(book,shelf)
+    
+   const newBooks = this.state.allBooks.filter(b => b.id!==book.id)
+   book.shelf = shelf
 
+   this.setState(()=>({
+    allBooks:[...newBooks,book]
+   }))
+
+
+
+    console.log(updatedBooks)
+    console.log(this.state.allBooks)
+    console.log(newBooks)
+    
     
   }
 
@@ -48,7 +57,7 @@ class BooksApp extends React.Component {
             </div>
             <Switch>
               <Route exact path="/">
-                <MainPage allbooks={this.state.allBooks} onChange={this.onChange}/>
+                <MainPage allBooks={this.state.allBooks} onChange={this.onChange}/>
               </Route>   
               <Route exact path="/search">
                 <Search allBooks={this.state.allBooks} onChange={this.onChange}/>

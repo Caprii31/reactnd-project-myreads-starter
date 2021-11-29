@@ -3,7 +3,7 @@ import React from 'react';
 import Book from './book'
 
 const Mainpage = (props) => {
-    const books = props.allbooks
+    const books = props.allBooks
   
 
     const bookState = {
@@ -17,7 +17,7 @@ const Mainpage = (props) => {
 
     
     return (
-        <div className='list-books-conten'>
+        <div className='list-books-content'>
             {Object.keys(bookState).map(state =>(
                 <section className="bookshelf" key={state.length}>
                     <h2 className="bookshelf-title">{state}</h2>
